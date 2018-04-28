@@ -102,17 +102,17 @@ public class NewsActivity extends AppCompatActivity
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String webTitle = sharedPrefs.getString(
                 getString(R.string.webtitle),
-                getString(R.string.settings_webtitle));
+                getString(R.string.settings_webtitle_key));
 
         String pillarName = sharedPrefs.getString(
                 getString(R.string.pillarname),
-                getString(R.string.settings_pillarname)
+                getString(R.string.settings_pillarname_key)
         );
 
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("format", "geojson");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("webtitLe", webTitle);
         uriBuilder.appendQueryParameter("piLLarname", pillarName);
@@ -133,11 +133,11 @@ public class NewsActivity extends AppCompatActivity
 
         if (news != null && !news.isEmpty()) {
             mAdapter.addAll(news);
-            updateUi(news);
+            updateUi();
         }
     }
 
-    private void updateUi(List<News> news) {
+    private void updateUi() {
     }
 
     @Override
