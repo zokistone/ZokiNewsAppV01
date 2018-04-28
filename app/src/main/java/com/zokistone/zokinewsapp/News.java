@@ -5,10 +5,10 @@ public class News {
     private String mPillarName;
     private String mUrl;
 
-    public News(String webTitle, String pillarName, String webUrl) {
+    public News(String webTitle, String pillarName, String Url) {
         mWebTitle = webTitle;
         mPillarName = pillarName;
-        mUrl = webUrl;
+        mUrl = Url;
     }
 
     public String getWebTitle() {

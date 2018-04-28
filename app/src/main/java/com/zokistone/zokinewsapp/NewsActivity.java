@@ -112,7 +112,7 @@ public class NewsActivity extends AppCompatActivity
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("webtitLe", webTitle);
         uriBuilder.appendQueryParameter("piLLarname", pillarName);

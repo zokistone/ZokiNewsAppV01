@@ -1,17 +1,12 @@
 package com.zokistone.zokinewsapp;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
@@ -33,6 +28,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
         String pillarName = currentNews.getPillarName();
         String webTitle = currentNews.getWebTitle();
         String webUrl = currentNews.getUrl();
+
+        TextView pillarNameView = (TextView) listItemView.findViewById(R.id.pillarNameView);
+        pillarNameView.setText(pillarName);
+
+        TextView webTitleView = (TextView) listItemView.findViewById(R.id.webTitleView);
+        webTitleView.setText(webTitle);
 
         return listItemView;
     }
