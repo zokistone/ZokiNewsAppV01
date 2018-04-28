@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,9 +26,8 @@ public class NewsActivity extends AppCompatActivity
 
     private static final String LOG_TAG = NewsActivity.class.getName();
 
-    /** URL for earthquake data from the USGS dataset */
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?api-key=c95d3d04-5109-45e1-b2b2-1fd8c0bece2f";
+            "http://content.guardianapis.com/search?q=debates&api-key=test";
 
     private static final int NEWS_LOADER_ID = 1;
 
@@ -101,7 +99,25 @@ public class NewsActivity extends AppCompatActivity
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        return null;
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String webTitle = sharedPrefs.getString(
+                getString(R.string.webtitle),
+                getString(R.string.settings_webtitle));
+
+        String pillarName = sharedPrefs.getString(
+                getString(R.string.pillarname),
+                getString(R.string.settings_pillarname)
+        );
+
+        Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("limit", "10");
+        uriBuilder.appendQueryParameter("webtitLe", webTitle);
+        uriBuilder.appendQueryParameter("piLLarname", pillarName);
+
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
