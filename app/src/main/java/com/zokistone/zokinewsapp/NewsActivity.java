@@ -27,7 +27,7 @@ public class NewsActivity extends AppCompatActivity
     private static final String LOG_TAG = NewsActivity.class.getName();
 
     private static final String NEWS_REQUEST_URL =
-            "http://content.guardianapis.com/search?q=debates&api-key=test";
+            "https://content.guardianapis.com/search?api-key=c95d3d04-5109-45e1-b2b2-1fd8c0bece2f";
 
     private static final int NEWS_LOADER_ID = 1;
 
@@ -60,7 +60,7 @@ public class NewsActivity extends AppCompatActivity
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current earthquake that was clicked on
+
                 News currentNews = mAdapter.getItem(position);
 
 
