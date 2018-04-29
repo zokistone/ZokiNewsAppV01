@@ -4,20 +4,17 @@
     <string name="no_internet_connection">No internet connection.</string>
     <string name="settings_menu_item">Settings</string>
     <string name="settings_title">News Settings</string>
-
-
-
     <string name="webtitle">webTitle</string>
     <string name="settings_webtitle_key" translatable="false">webTitle</string>
     <string name="settings_webtitle_default" translatable="false">Sports</string>
-
     <string name="pillarname">pillarName</string>
     <string name="settings_pillarname_key" translatable="false">pillarName</string>
     <string name="settings_pillarname_default" translatable="false">@string/settings_order_by_webtitle_label</string>
-
     <string name="settings_order_by_webtitle_label">Web Title</string>
     <string name="settings_order_by_webtitle_value" translatable="false">webTitle</string>
-
     <string name="settings_order_by_most_recent_label">Pillar Name</string>
     <string name="settings_order_by_most_recent_value" translatable="false">pillarName</string>
+    <string name="query_webtitle">"webTitle"</string>
+    <string name="query_pillarname">"pillarName"</string>
+    <string name="query_weburl">"webUrl"</string>
  </resources>
