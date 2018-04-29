@@ -36,9 +36,9 @@ public class QueryUtils {
                 Log.e(LOG_TAG, "Problem making the HTTP request.", e);
             }
 
-            List<News> articles = extractFeatureFromJson(jsonResponse);
+            List<News> news = extractFeatureFromJson(jsonResponse);
 
-            return articles;
+            return news;
         }
 
         private static URL createUrl(String stringUrl) {
@@ -62,8 +62,8 @@ public class QueryUtils {
             InputStream inputStream = null;
             try {
                 urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setReadTimeout(10000000);
-                urlConnection.setConnectTimeout(15000000);
+                urlConnection.setReadTimeout(10000);
+                urlConnection.setConnectTimeout(15000);
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
 
@@ -105,33 +105,26 @@ public class QueryUtils {
                 return null;
             }
 
-            List<News> news = new ArrayList<>();
+            List<News> newsall = new ArrayList<>();
 
             try {
 
-                JSONObject baseJsonResponse = new JSONObject(newsJSON);
-
-                JSONArray newsArray = baseJsonResponse.getJSONArray("response");
-
-                for (int i = 0; i < newsArray.length(); i++) {
-
-                    JSONObject currentNews = newsArray.getJSONObject(i);
-
-                    JSONObject results = currentNews.getJSONObject("results");
-
-                    String title = results.getString("webTitle");
-                    String name = results.getString("pillarName");
-                    String url = results.getString("webUrl");
-
-                    News article = new News(title, name, url);
-
-                    news.add(article);
+                JSONObject data = new JSONObject(newsJSON);
+                JSONObject response = data.getJSONObject("response");
+                JSONArray results = response.getJSONArray("results");
+                for (int i = 0; i < results.length(); i++) {
+                    JSONObject obj = results.getJSONObject(i);
+                    String webTitle = obj.getString("webTitle");
+                    String pillarName = obj.getString("pillarName");
+                    String webUrl = obj.getString("webUrl");
+                    News news = new News(webTitle, pillarName, webUrl);
+                    newsall.add(news);
                 }
 
             } catch (JSONException e) {
                 Log.e("QueryUtils", "Problem parsing the news JSON results", e);
             }
-            return news;
+            return newsall;
         }
 
     }
