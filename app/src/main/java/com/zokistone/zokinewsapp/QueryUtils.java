@@ -36,9 +36,9 @@ public class QueryUtils {
                 Log.e(LOG_TAG, "Problem making the HTTP request.", e);
             }
 
-            List<News> news = extractFeatureFromJson(jsonResponse);
+            List<News> articles = extractFeatureFromJson(jsonResponse);
 
-            return news;
+            return articles;
         }
 
         private static URL createUrl(String stringUrl) {
@@ -111,7 +111,7 @@ public class QueryUtils {
 
                 JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
-                JSONArray newsArray = baseJsonResponse.getJSONArray("results");
+                JSONArray newsArray = baseJsonResponse.getJSONArray("response");
 
                 for (int i = 0; i < newsArray.length(); i++) {
 
@@ -123,9 +123,9 @@ public class QueryUtils {
                     String name = results.getString("pillarName");
                     String url = results.getString("webUrl");
 
-                    News news1 = new News(title, name, url);
+                    News article = new News(title, name, url);
 
-                    news.add(news1);
+                    news.add(article);
                 }
 
             } catch (JSONException e) {

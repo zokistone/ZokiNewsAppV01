@@ -27,7 +27,7 @@ public class NewsActivity extends AppCompatActivity
     private static final String LOG_TAG = NewsActivity.class.getName();
 
     private static final String NEWS_REQUEST_URL =
-            "https://content.guardianapis.com/search?api-key=c95d3d04-5109-45e1-b2b2-1fd8c0bece2f";
+            "https://content.guardianapis.com/search?api-key=c95d3d04-5109-45e1-b2b2-1fd8c0bece2f&format=json&limit=10&webtitLe=webTitle&piLLarname=pillarName";
 
     private static final int NEWS_LOADER_ID = 1;
 
@@ -112,7 +112,7 @@ public class NewsActivity extends AppCompatActivity
         Uri baseUri = Uri.parse(NEWS_REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("format", "geojson");
+        uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("webtitLe", webTitle);
         uriBuilder.appendQueryParameter("piLLarname", pillarName);
